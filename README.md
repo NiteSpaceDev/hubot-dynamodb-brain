@@ -18,6 +18,27 @@ Then add **hubot-dynamodb-brain** to your `external-scripts.json`:
 ]
 ```
 
+## Defaults:
+
+By default, this brain assumes that a DynamoDB table named 'hubotbrain' exists with 'botname' as the primary key with type 'string'.
+
+The following CloudFormation YAML will create such a table:
+```yaml
+HubotBrainDynamo:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      TableName: hubotbrain
+      AttributeDefinitions:
+        - AttributeName: "botname"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "botname"
+          KeyType: "HASH"
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+```
+
 ## Sample Interaction
 
 ```

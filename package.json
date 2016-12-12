@@ -4,25 +4,20 @@
   "version": "0.0.0",
   "author": "Nitehawk <nitehawk@nitespace.co>",
   "license": "MIT",
-
   "keywords": "hubot, hubot-scripts, dynamodb, hubot-brain",
-
   "repository": {
     "type": "git",
     "url": "git://github.com/hubot-scripts/hubot-dynamodb-brain.git"
   },
-
   "bugs": {
     "url": "https://github.com/hubot-scripts/hubot-dynamodb-brain/issues"
   },
-
   "dependencies": {
+    "aws-sdk": "^2.7.13"
   },
-
   "peerDependencies": {
     "hubot": "2.x"
   },
-
   "devDependencies": {
     "hubot-test-helper": "^1.3.0",
     "chai": "^2.1.1",
@@ -38,9 +33,7 @@
     "sinon": "^1.13.0",
     "sinon-chai": "^2.7.0"
   },
-
   "main": "index.coffee",
-
   "scripts": {
     "test": "grunt test"
   }
