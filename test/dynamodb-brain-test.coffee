@@ -12,16 +12,9 @@ describe 'dynamodb-brain', ->
   afterEach ->
     @room.destroy()
 
-  it 'responds to hello', ->
-    @room.user.say('alice', '@hubot hello').then =>
+  it 'responds to brainscan', ->
+    @room.user.say('alice', '@hubot brainscan').then =>
       expect(@room.messages).to.eql [
-        ['alice', '@hubot hello']
-        ['hubot', '@alice hello!']
-      ]
-
-  it 'hears orly', ->
-    @room.user.say('bob', 'just wanted to say orly').then =>
-      expect(@room.messages).to.eql [
-        ['bob', 'just wanted to say orly']
-        ['hubot', 'yarly']
+        ['alice', '@hubot brainscan']
+        ['hubot', '@alice My brain is doing great!']
       ]

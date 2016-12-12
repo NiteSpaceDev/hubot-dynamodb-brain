@@ -20,9 +20,9 @@ Then add **hubot-dynamodb-brain** to your `external-scripts.json`:
 
 ## Defaults:
 
-By default, this brain assumes that a DynamoDB table named 'hubotbrain' exists with 'botname' as the primary key with type 'string'.
+This brain is written with the assumption that the hubot instance is running on an AWS instance, with an instance role that allows access to the 'hubotbrain' table in the current region.   Environment variables are available to override.
 
-The following CloudFormation YAML will create such a table:
+The following CloudFormation YAML will create a suitable table in DynamoDB:
 ```yaml
 HubotBrainDynamo:
     Type: "AWS::DynamoDB::Table"
@@ -40,10 +40,9 @@ HubotBrainDynamo:
 ```
 
 ## Sample Interaction
-
 ```
-user1>> hubot hello
-hubot>> hello!
+user1>> hubot brainscan
+hubot>> My brain is doing great!
 ```
 
 ## NPM Module
