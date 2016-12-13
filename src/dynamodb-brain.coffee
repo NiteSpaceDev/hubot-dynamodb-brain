@@ -69,6 +69,8 @@ module.exports = (robot) ->
     saveBrain data
 
   robot.respond /brainscan/, (res) ->
+    before = robot.brain.get "LastUser"
+    res.reply "#{before} just asked me this!"
     robot.brain.set "LastUser", res.message.user.name
     res.reply "My brain is called '#{params.Key.botname}' and it's doing great!"
 
