@@ -45,7 +45,7 @@ module.exports = (robot) ->
     brain.Item.botname = params.Key.botname
     doc.put brain, (err, res) ->
       if err
-        robot.logger.error err
+        throw err
 
   loadBrain = (params) ->
     robot.brain.setAutoSave false
@@ -68,8 +68,5 @@ module.exports = (robot) ->
     saveBrain data
 
   robot.respond /brainscan/, (res) ->
-    before = robot.brain.get "LastUser"
-    res.reply "#{before} just asked me this!"
-    robot.brain.set "LastUser", res.message.user.name
     res.reply "My brain is called '#{params.Key.botname}' and it's doing great!"
 
