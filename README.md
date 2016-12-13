@@ -20,7 +20,7 @@ Then add **hubot-dynamodb-brain** to your `external-scripts.json`:
 
 ## Defaults:
 
-This brain is written with the assumption that the hubot instance is running on an AWS instance, with an instance role that allows access to the 'hubotbrain' table in the current region.   Environment variables are available to override.
+This brain is written with the assumption that the hubot instance is running on an AWS instance, with an instance role that allows access to the 'hubotbrain' table in the us-east-2 region.   Environment variables are available to override.
 
 The following CloudFormation YAML will create a suitable table in DynamoDB:
 ```yaml
