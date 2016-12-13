@@ -20,12 +20,11 @@
 
 AWS = require 'aws-sdk'
 
-config = {}
-params = {}
-
-creds = {}
-
 module.exports = (robot) ->
+  config = {}
+  params = {}
+  creds = {}
+
   config.region = process.env.HUBOT_AWS_REGION or 'us-east-2'
   params.TableName = process.env.HUBOT_BRAIN_DYNAMO_TABLE or 'hubotbrain'
   params.Key = { botname: process.env.HUBOT_BRAIN_DYNAMO_NAME or robot.name }
@@ -44,34 +43,32 @@ module.exports = (robot) ->
   saveBrain = (data = {}) ->
     console.log "Saving brain"
     brain = {TableName: params.TableName, Item: data}
-    brain.Item.botname = params.botname
+    brain.Item.botname = params.Key.botname
     doc.put brain, (err, res) ->
       if err
         robot.logger.error err
+
+  loadBrain = (params) ->
+    robot.brain.setAutoSave false
+
+    doc.get params, (err, data) ->
+      if err
+        throw err
+      else if data
+        robot.logger.info "hubot-dynamodb-brain: Data for #{params.Key.botname} retrieved from Dynamo"
+        robot.brain.mergeData data
       else
-        robot.logger.error "Brain saved"
+        robot.logger.info "hubot-dynamodb-brain: Initializing new brain for #{params.Key.botname}"
+        robot.brain.mergeData {}
 
-        #robot.brain.setAutoSave false
-
-  doc.get params, (err, data) ->
-    if err
-      throw err
-    else if data
-      robot.logger.info "hubot-dynamodb-brain: Data for #{params.key} retrieved from Dynamo"
-      robot.brain.mergeData JSON.parse(data.toString())
-    else
-      robot.logger.info "hubot-dynamodb-brain: Initializing new brain for #{params.key}"
-      robot.brain.mergeData {}
     robot.brain.setAutoSave true
 
+  loadBrain params
+
   robot.brain.on 'save', (data = {}) ->
-    robot.messageRoom "room1", "Saving Brain"
-    console.log "Saving brain"
     saveBrain data
 
-
   robot.respond /brainscan/, (res) ->
-    console.log "Brainscan - attempt to save brain"
-    saveBrain {lastres: res}
-    res.reply "My brain is doing great!"
+    robot.brain.set "LastUser", res.message.user.name
+    res.reply "My brain is called '#{params.Key.botname}' and it's doing great!"
 

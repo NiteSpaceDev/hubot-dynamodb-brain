@@ -16,5 +16,5 @@ describe 'dynamodb-brain', ->
     @room.user.say('alice', '@hubot brainscan').then =>
       expect(@room.messages).to.eql [
         ['alice', '@hubot brainscan']
-        ['hubot', '@alice My brain is doing great!']
+        ['hubot', "@alice My brain is called 'hubot' and it's doing great!"]
       ]
