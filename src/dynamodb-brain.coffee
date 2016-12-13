@@ -55,7 +55,7 @@ module.exports = (robot) ->
         throw err
       else if data
         robot.logger.info "hubot-dynamodb-brain: Data for #{params.Key.botname} retrieved from Dynamo"
-        robot.brain.mergeData data
+        robot.brain.mergeData data.Item
       else
         robot.logger.info "hubot-dynamodb-brain: Initializing new brain for #{params.Key.botname}"
         robot.brain.mergeData {}
