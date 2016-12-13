@@ -1,16 +1,16 @@
 {
   "name": "hubot-dynamodb-brain",
   "description": "A hubot brain built on DynamoDB",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Nitehawk <nitehawk@nitespace.co>",
   "license": "MIT",
   "keywords": "hubot, hubot-scripts, dynamodb, hubot-brain",
   "repository": {
     "type": "git",
-    "url": "git://github.com/hubot-scripts/hubot-dynamodb-brain.git"
+    "url": "git://github.com/nitespacedev/hubot-dynamodb-brain.git"
   },
   "bugs": {
-    "url": "https://github.com/hubot-scripts/hubot-dynamodb-brain/issues"
+    "url": "https://github.com/nitespacedev/hubot-dynamodb-brain/issues"
   },
   "dependencies": {
     "aws-sdk": "^2.7.13"
