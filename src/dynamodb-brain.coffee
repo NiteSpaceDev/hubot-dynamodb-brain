@@ -53,7 +53,7 @@ module.exports = (robot) ->
     doc.get params, (err, data) ->
       if err
         throw err
-      else if data
+      else if data.Item.users
         robot.logger.info "hubot-dynamodb-brain: Data for #{params.Key.botname} retrieved from Dynamo"
         robot.brain.mergeData data.Item
       else
