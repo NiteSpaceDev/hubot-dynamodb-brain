@@ -41,7 +41,6 @@ module.exports = (robot) ->
   doc = new AWS.DynamoDB.DocumentClient
 
   saveBrain = (data = {}) ->
-    console.log "Saving brain"
     brain = {TableName: params.TableName, Item: data}
     brain.Item.botname = params.Key.botname
     doc.put brain, (err, res) ->
