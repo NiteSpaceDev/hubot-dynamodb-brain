@@ -30,6 +30,7 @@ module.exports = (robot) ->
   params.Key = { botname: process.env.HUBOT_BRAIN_DYNAMO_NAME or robot.name }
   creds.access = process.env.HUBOT_AWS_ACCESS_KEY_ID or undefined
   creds.secret = process.env.HUBOT_AWS_SECRET_ACCESS_KEY or undefined
+  saveBrainInterval = process.env.HOBOT_SAVE_BRAIN_INTERVAL or 5
 
 
   if creds.access and creds.secret
@@ -38,8 +39,7 @@ module.exports = (robot) ->
 
   AWS.config.update config
 
-  doc = new AWS.DynamoDB.DocumentClient
-
+  doc = new AWS.DynamoDB.DocumentClient({convertEmptyValues: true,})
   saveBrain = (data = {}) ->
     brain = {TableName: params.TableName, Item: data}
     brain.Item.botname = params.Key.botname
@@ -63,6 +63,8 @@ module.exports = (robot) ->
     robot.brain.setAutoSave true
 
   loadBrain params
+
+  robot.brain.resetSaveInterval saveBrainInterval
 
   robot.brain.on 'save', (data = {}) ->
     saveBrain data
