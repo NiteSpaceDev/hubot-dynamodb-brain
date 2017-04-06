@@ -38,8 +38,7 @@ module.exports = (robot) ->
 
   AWS.config.update config
 
-  doc = new AWS.DynamoDB.DocumentClient
-
+  doc = new AWS.DynamoDB.DocumentClient({convertEmptyValues: true,})
   saveBrain = (data = {}) ->
     brain = {TableName: params.TableName, Item: data}
     brain.Item.botname = params.Key.botname
