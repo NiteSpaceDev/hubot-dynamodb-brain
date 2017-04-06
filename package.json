@@ -1,7 +1,7 @@
 {
   "name": "hubot-dynamodb-brain",
   "description": "A hubot brain built on DynamoDB",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Nitehawk <nitehawk@nitespace.co>",
   "license": "MIT",
   "keywords": "hubot, hubot-scripts, dynamodb, hubot-brain",
